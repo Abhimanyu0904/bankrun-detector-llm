@@ -1,0 +1,106 @@
+{
+	"entity_system": "You are a helpful assistant designed to classify tweets as \"Correct Entity\" or \"Incorrect Entity\" based on if they refer to the bank described in the prompt. Label the tweet as \"Correct Entity\" if the tweet is referring to the bank in question; otherwise, label it as \"Incorrect Entity\". In many cases, tweets contain language that contains the name of the bank, but the tweet refers to a different entity or associated entity; for example, M&T Bank has many tweets about their associated baseball field M&T Bank Stadium, which should be marked as \"Incorrect Entity\". Tweets that are not talking about the bank entity specifically should be marked as \"Incorrect Entity\". Note that the tweet can also mention a bank in a non-banking context. \n\n You are designed to output information only in JSON format, with no other content included; please do not include any additional text before or after the desired output. If multiple tweets are submitted, return a list of JSON objects. The output for each labeled tweet should contain the prediction label and decimal number from 0 to 1 that represents the confidence associated with the label assignment. 1 indicates absolute confidence in the label assignment, 0 indicates no confidence in the label assignment. The proper output format is {\"prediction\": prediction_label, \"confidence\": confidence_metric}. Any tweets with the correct stock tickers should be included as an entity match (even if it includes multiple entities). Use your best judgment, but assume that if the tweet includes the bank's name with little context (i.e. 'pull up to suntrust') they are talking about the bank. \n",
+	"risk_system": "You are a helpful assistant designed to classify bank-related tweets as \"Indicative of a Bank Run\" or \"Not Indicative of a Bank Run\". Classify these tweets based on if they indicate signs of bank liquidity crises in the near future, including asset quality concerns (e.g. selling off assets), overleveraging, significant concern about bank quality and performance, and systemic financial stresses. Examples of tweets that may be indicative of a bank run are: a bank laying off employees, a bank selling its portfolio/stock, customers saying negative things about the bank (like cursing out the bank), a bank getting fined, a bank getting a lawsuit or settling on one, a bank owing someone money, a bank losing money on its investments or a bank's investments not doing well, a bank making a weird investment, a bank buying out another bank (unless it's a good buyout that will help the bank), customers saying they will leave the bank and take their money out, and a bank that already failed and is being seized/closed. Examples of tweets that may not be indicative of a bank run are: a bank's earnings (unless they are stated to be going down), job postings from the bank, indication that the bank is a good investment or that people are thinking of investing in the bank, a bank donating money to charity, a bank suing others, and a robbery at/near the bank. You are designed to output information only in JSON format, with no other content included; please do not include any additional text before or after the desired output. If multiple tweets are submitted, return a list of JSON objects. The output for each labeled tweet should contain the prediction label and decimal number from 0 to 1 that represents the confidence associated with the label assignment. 1 indicates absolute confidence in the label assignment, 0 indicates no confidence in the label assignment. The proper output format is {\"prediction\": prediction_label, \"confidence\": confidence_metric}. Please consider whether the tweet could lead to a bank run, not just if the tweet has negative sentiment.\n",
+	"entity_examples": [
+		{
+			"tweet": "I’m at US Bank (Batavia, OH)",
+			"bank": "US Bank",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "UPDATE 1-Wells, U.S. Bancorp to stop contentious short-term loans",
+			"bank": "US Bank",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "Thank you capital one for increasing my credit limit.",
+			"bank": "Capital One",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "@MandT_Bank Bank Assct lied 4 stolen used acct for Post Ofc refused an already opened confirmed licensed acct. showd paperwk recorded denial",
+			"bank": "M&T Bank",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "Northern Trust Q2 net income up 46% - Trading Markets (press release) - Go to tinyurl.com/nmuvcf",
+			"bank": "Northern Trust",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "NCAA Softball Regionals presented by Capital One (Site 1 / Game 6) starting in 3 mins...  #livematrix #sports",
+			"bank": "Capital One",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "RT @thegooglefact_: The secret recipe for Coca Cola is locked away in a vault in the SunTrust Bank Building in Atlanta, Georgia.",
+			"bank": "Truist",
+			"label": "Correct Entity"
+		},
+		{
+			"tweet": "Meetings today :( (@ Fifth Third Center w/ 2 others) http://t.co/8bjPpwsz",
+			"bank": "Fifth Third Bancorp",
+			"label": "Incorrect Entity"
+		},
+		{
+			"tweet": "@bowdowngomez JPMorgan faces criminal and civil probes over mortgages: (Reuters) - JPMorgan Chase &amp; Co, the biggest U.S. bank by asse...",
+			"bank": "US Bank",
+			"label": "Incorrect Entity"
+		},
+		{
+			"tweet": "U.S. bank cyberattacks reflect 'frightening' new era http://t.co/IMDmFa4P via @csoonline",
+			"bank": "US Bank",
+			"label": "Incorrect Entity"
+		}
+	],
+	"risk_examples": [
+		{
+			"tweet": "The chart for $BKS tells you everything you need to know...run the other way from them!",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "South Carolina sues BNY Mellon for $200M: Loftis said in the release that the contract called for investments…",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "Capital One Agrees to $75 Million TCPA Settlement — by Drinker Biddle",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "capital one are frauds! Still list their address here in nottz: but they vacated building ages ago!",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "Capital One to pay $210 million to settle charges that they misled consumers into paying for extra products.",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "CFTC files complaint US Bank for using customer funds as collateral on loans to Wasendorf.",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "US Bank NA as Trustee For Structured Asset Investment Loan Trust: IS A BOGUS TRUST.",
+			"label": "Indicative of a Bank Run"
+		},
+		{
+			"tweet": "LATEST BANKING NEWS BNY Mellon Asset Servicing Selected as Global Custodian for Bank o... http://tinyurl.com/65pcmaw follow warren today",
+			"label": "Not Indicative of a Bank Run"
+		},
+		{
+			"tweet": "M&amp;A - Opalesque Exclusive: BNY Mellon acquires Insight Investment from Lloyds for GBP253m: From the Opalesqu.. http://bit.ly/9QF6d",
+			"label": "Not Indicative of a Bank Run"
+		},
+		{
+			"tweet": "New #Job Mortgage Sales Manager - Chicago, IL (Schaumburg Region): U.S. Bank - Title: Mortgage Sales Man... http://t.co/HERmDrsD #hiring",
+			"label": "Not Indicative of a Bank Run"
+		},
+		{
+			"tweet": "Thank you capital one for increasing my credit limit.",
+			"label": "Not Indicative of a Bank Run"
+		},
+		{
+			"tweet": "RT @NC5: BREAKING: Police said the SunTrust Bank at 731 Cool Spring Boulevard was robbed at gunpoint by a man just after 6... http://t.c ...",
+			"label": "Not Indicative of a Bank Run"
+		}
+	]
+}

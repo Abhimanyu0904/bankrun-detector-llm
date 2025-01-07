@@ -1,0 +1,6 @@
+POSITIVE_ENTITY_LABEL = "Correct Entity"
+NEGATIVE_ENTITY_LABEL = "Incorrect Entity"
+POSITIVE_RISK_LABEL = "Indicative of a Bank Run"
+NEGATIVE_RISK_LABEL = "Not Indicative of a Bank Run"
+ENTITY_KEY = "entity_classification"
+RISK_KEY = "risk_sentiment"

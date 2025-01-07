@@ -1,0 +1,17 @@
+.env
+
+formatted_twitter_data/
+
+filtered_twitter_data/
+
+.vscode/
+
+training_data.json
+
+labeled_data/
+
+base_data/
+
+gpt4_results.json
+
+finetuned_results.json

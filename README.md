@@ -1,4 +1,4 @@
-# liquidity-llm-project
+# bankrun-detector-llm
 Looking into the viability of using an LLM to help identify potential liquidity risk for regional banks. Please don't store any data directly in this repository. Use a `.env` file and don't hardcode file paths unless absolutely necessary. Look at Notes section for more information.
 
 ## Folder Descriptions
